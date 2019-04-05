@@ -6,21 +6,64 @@
 package IA;
 
 import java.awt.Color;
+import java.util.Random;
 
 /**
  *
  * @author Victor Augusto Pozzan
  */
 public class TicTacToe extends javax.swing.JFrame {
+    String x = "X", y = "O";
+    int Tabuleiro[];
+    boolean playerOn, computerOn;
 
-    /**
-     * Creates new form TicTacToe
-     */
-    public TicTacToe() {
+    public TicTacToe(){
         initComponents();
-       // JFrame.getContentPane().setBackground(Color.black);
+        gameplay();
     }
 
+    public boolean randFirstplayer(){
+        Random rand = new Random();
+        // Obtain a number between [0 - 9].
+        int n = rand.nextInt(9);
+        System.out.println("numero sorteado "+  n );
+        if(n%2 == 0){
+            playerOn = true;
+            computerOn = false;
+            return true;
+        }
+        playerOn = false;
+        computerOn = true;
+        return false;
+    }
+    
+    private void initTabuleiro() {
+        Tabuleiro = new int[10]; 
+        for (int i=0; i<9; i++) {
+             Tabuleiro[i] = 2; 
+        }
+    }
+    
+    public void turn(){
+        if(playerOn){
+            playerOn = false;
+            computerOn = true;
+        }else{
+            playerOn = true;
+            computerOn = false;
+        }
+    }
+    
+    private void gameplay() {
+        initTabuleiro();
+        if(!randFirstplayer()){
+            B5.setText("X");
+            turn();
+        }
+        for(int i=0; i<9; i++){
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,16 +86,16 @@ public class TicTacToe extends javax.swing.JFrame {
         B9 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        NVitoriasPlayer = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        NVitoriasComp = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
+        NEmpate = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        NewGame = new javax.swing.JToggleButton();
+        About = new javax.swing.JToggleButton();
+        Exit = new javax.swing.JToggleButton();
         jPanel6 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -67,42 +110,81 @@ public class TicTacToe extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tic Tac Toe");
         setAutoRequestFocus(false);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Jogo"));
 
-        B1.setText("jButton1");
+        B1.setBackground(new java.awt.Color(255, 255, 255));
+        B1.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B1.setMinimumSize(new java.awt.Dimension(60, 60));
+        B1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B1ActionPerformed(evt);
+            }
+        });
 
-        B2.setText("jButton2");
+        B2.setBackground(new java.awt.Color(255, 255, 255));
+        B2.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B2.setMinimumSize(new java.awt.Dimension(60, 60));
         B2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B2ActionPerformed(evt);
             }
         });
 
-        B3.setText("jButton3");
+        B3.setBackground(new java.awt.Color(255, 255, 255));
+        B3.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B3.setMinimumSize(new java.awt.Dimension(60, 60));
 
-        B4.setText("jButton4");
+        B4.setBackground(new java.awt.Color(255, 255, 255));
+        B4.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B4.setMinimumSize(new java.awt.Dimension(60, 60));
         B4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B4ActionPerformed(evt);
             }
         });
 
-        B5.setText("jButton5");
+        B5.setBackground(new java.awt.Color(255, 255, 255));
+        B5.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B5.setMinimumSize(new java.awt.Dimension(60, 60));
 
-        B6.setText("jButton6");
+        B6.setBackground(new java.awt.Color(255, 255, 255));
+        B6.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B6.setMinimumSize(new java.awt.Dimension(60, 60));
 
-        B7.setText("jButton7");
+        B7.setBackground(new java.awt.Color(255, 255, 255));
+        B7.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B7.setMinimumSize(new java.awt.Dimension(60, 60));
         B7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B7ActionPerformed(evt);
             }
         });
 
-        B8.setText("jButton8");
+        B8.setBackground(new java.awt.Color(255, 255, 255));
+        B8.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B8.setMinimumSize(new java.awt.Dimension(60, 60));
 
-        B9.setText("jButton9");
+        B9.setBackground(new java.awt.Color(255, 255, 255));
+        B9.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B9.setMinimumSize(new java.awt.Dimension(60, 60));
+        B9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,26 +194,23 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(B1)
+                        .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(B2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(B3))
+                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(B4)
-                                .addGap(18, 18, 18)
-                                .addComponent(B5)
-                                .addGap(18, 18, 18)
-                                .addComponent(B6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(B7)
-                                .addGap(18, 18, 18)
-                                .addComponent(B8)
-                                .addGap(18, 18, 18)
-                                .addComponent(B9)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -143,19 +222,19 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B2)
-                    .addComponent(B3))
+                    .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B5)
-                    .addComponent(B6)
-                    .addComponent(B4))
+                    .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(B8)
-                        .addComponent(B9))
-                    .addComponent(B7))
+                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
         );
 
@@ -165,13 +244,13 @@ public class TicTacToe extends javax.swing.JFrame {
 
         jLabel1.setText("Jogador");
 
-        jLabel2.setText("Número de Vitórias:");
+        NVitoriasPlayer.setText("Número de Vitórias: 0");
 
         jLabel3.setText("Computador");
 
-        jLabel4.setText("Número de Vitórias:");
+        NVitoriasComp.setText("Número de Vitórias: 0");
 
-        jLabel5.setText("Número de Empates:");
+        NEmpate.setText("Número de Empates: 0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -184,12 +263,12 @@ public class TicTacToe extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
+                            .addComponent(NVitoriasPlayer)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(NVitoriasComp))
+                        .addContainerGap(154, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(NEmpate)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -199,38 +278,38 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(NVitoriasPlayer)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(NVitoriasComp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Controle do Jogo"));
         jPanel4.setToolTipText("");
 
-        jToggleButton1.setText("Novo Jogo");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        NewGame.setText("Novo Jogo");
+        NewGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                NewGameActionPerformed(evt);
             }
         });
 
-        jToggleButton2.setText("Info");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        About.setText("Info");
+        About.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                AboutActionPerformed(evt);
             }
         });
 
-        jToggleButton3.setText("Sair");
+        Exit.setText("Sair");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -240,25 +319,25 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jToggleButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(NewGame)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jToggleButton2)
+                        .addComponent(About)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jToggleButton1, jToggleButton2, jToggleButton3});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {About, Exit, NewGame});
 
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton3))
+                    .addComponent(NewGame)
+                    .addComponent(Exit))
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton2)
+                .addComponent(About)
                 .addGap(0, 36, Short.MAX_VALUE))
         );
 
@@ -286,8 +365,8 @@ public class TicTacToe extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -300,7 +379,7 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, Short.MAX_VALUE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -308,24 +387,84 @@ public class TicTacToe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
-        // TODO add your handling code here:
+        
+        if(playerOn){
+            if(B2.getText().equals("")){
+                B2.setText("X");
+                turn();
+            }
+        }else{
+            if(B2.getText().equals("")){
+                B2.setText("O");
+                turn();
+            }
+        }
     }//GEN-LAST:event_B2ActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_NewGameActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+    private void AboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutActionPerformed
+        
+    }//GEN-LAST:event_AboutActionPerformed
 
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
-        // TODO add your handling code here:
+        
+        if(playerOn){
+            if(B4.getText().equals("")){
+                B4.setText("X");
+                turn();
+            }
+        }else{
+            if(B4.getText().equals("")){
+                B4.setText("O");
+                turn();
+            }
+        }
     }//GEN-LAST:event_B4ActionPerformed
 
     private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
-        // TODO add your handling code here:
+        if(playerOn){
+            if(B7.getText().equals("")){
+                B7.setText("X");
+                turn();
+            }
+        }else{
+            if(B7.getText().equals("")){
+                B7.setText("O");
+                turn();
+            }
+        }
     }//GEN-LAST:event_B7ActionPerformed
+
+    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
+        if(playerOn){
+            if(B1.getText().equals("")){
+                B1.setText("X");
+                turn();
+            }
+        }else{
+            if(B1.getText().equals("")){
+                B1.setText("O");
+                turn();
+            }
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_B1ActionPerformed
+
+    private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
+        if(playerOn){
+            if(B9.getText().equals("")){
+                B9.setText("X");
+                turn();
+            }
+        }else{
+            if(B9.getText().equals("")){
+                B9.setText("O");
+                turn();
+            }
+        }
+    }//GEN-LAST:event_B9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,16 +492,17 @@ public class TicTacToe extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TicTacToe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+      
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        public void run() {
                 new TicTacToe().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton About;
     private javax.swing.JButton B1;
     private javax.swing.JButton B2;
     private javax.swing.JButton B3;
@@ -372,11 +512,13 @@ public class TicTacToe extends javax.swing.JFrame {
     private javax.swing.JButton B7;
     private javax.swing.JButton B8;
     private javax.swing.JButton B9;
+    private javax.swing.JToggleButton Exit;
+    private javax.swing.JLabel NEmpate;
+    private javax.swing.JLabel NVitoriasComp;
+    private javax.swing.JLabel NVitoriasPlayer;
+    private javax.swing.JToggleButton NewGame;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -384,8 +526,7 @@ public class TicTacToe extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
     // End of variables declaration//GEN-END:variables
+
+
 }
