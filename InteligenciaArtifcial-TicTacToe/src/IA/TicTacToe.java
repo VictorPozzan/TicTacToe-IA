@@ -7,6 +7,7 @@ package IA;
 
 import java.awt.Color;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,55 +15,115 @@ import java.util.Random;
  */
 public class TicTacToe extends javax.swing.JFrame {
     String x = "X", y = "O";
-    int Tabuleiro[];
+    int Tabuleiro[], VitoriaPlayer = 0, VitoriaComp = 0, Empates = 0, jogada=0;
     boolean playerOn, computerOn;
-
+    
     public TicTacToe(){
         initComponents();
         gameplay();
     }
-
+    //--------------------------------------------//
+    public void faz2(){
+    }
+    public void ganha(int p){
+        
+    }        
+    public void jogueN(int n){
+        jogada++;
+        if(jogada%2==0){//jogada é par O
+            Tabuleiro[n] = 5;//O
+        }else{
+            Tabuleiro[n] = 3;//X   
+        }
+        for (int i=0; i<9; i++) {
+             System.out.print(Tabuleiro[i] + " | ");
+             if(i==2||i==5||i==8)
+                System.out.println("");
+        }
+        System.out.println("-----------------------");
+    }
+    //-------------------------------------------//
     public boolean randFirstplayer(){
         Random rand = new Random();
         // Obtain a number between [0 - 9].
         int n = rand.nextInt(9);
         System.out.println("numero sorteado "+  n );
         if(n%2 == 0){
-            playerOn = true;
-            computerOn = false;
+            playerOn = true; //X
+            computerOn = false; //O
             return true;
         }
-        playerOn = false;
-        computerOn = true;
+        playerOn = false; //O
+        computerOn = true; //X
         return false;
     }
     
     private void initTabuleiro() {
-        Tabuleiro = new int[10]; 
+        Tabuleiro = new int[9]; 
         for (int i=0; i<9; i++) {
-             Tabuleiro[i] = 2; 
+             Tabuleiro[i] = 2;
         }
     }
-    
-    public void turn(){
-        if(playerOn){
-            playerOn = false;
-            computerOn = true;
-        }else{
-            playerOn = true;
-            computerOn = false;
-        }
-    }
-    
+   
     private void gameplay() {
         initTabuleiro();
         if(!randFirstplayer()){
-            B5.setText("X");
-            turn();
+            strategyPc();
         }
-        for(int i=0; i<9; i++){
-            
+    }
+    
+    private void strategyPc(){
+        switch(jogada){
+            case 0://jogada 1
+                B0.setText("X");
+                jogueN(0);
+                break;
+            case 1://jogada 2;
+                if(Tabuleiro[4] == 2){
+                    B4.setText("O");
+                    jogueN(4);
+                }else{
+                    B0.setText("O");
+                    jogueN(0);   
+                }
+                break;
+            case 2:
+                B0.setText("X");
+                jogueN(0);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
         }
+    }
+    
+    public void winner(String name){//implementar o restante!
+        name = "Computador";
+        JOptionPane.showMessageDialog(null, "Parabéns " + name);
+        VitoriaComp++;
+        NVitoriasComp.setText("Número de Vitórias: " + VitoriaComp);
+        clean();
+    }
+    
+    public void clean(){
+        B0.setText("");
+        B1.setText("");
+        B2.setText("");
+        B3.setText("");
+        B4.setText("");
+        B5.setText("");
+        B6.setText("");
+        B7.setText("");
+        B8.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,6 +136,7 @@ public class TicTacToe extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        B0 = new javax.swing.JButton();
         B1 = new javax.swing.JButton();
         B2 = new javax.swing.JButton();
         B3 = new javax.swing.JButton();
@@ -83,7 +145,6 @@ public class TicTacToe extends javax.swing.JFrame {
         B6 = new javax.swing.JButton();
         B7 = new javax.swing.JButton();
         B8 = new javax.swing.JButton();
-        B9 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         NVitoriasPlayer = new javax.swing.JLabel();
@@ -116,6 +177,16 @@ public class TicTacToe extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Jogo"));
 
+        B0.setBackground(new java.awt.Color(255, 255, 255));
+        B0.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B0.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B0.setMinimumSize(new java.awt.Dimension(60, 60));
+        B0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B0ActionPerformed(evt);
+            }
+        });
+
         B1.setBackground(new java.awt.Color(255, 255, 255));
         B1.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
         B1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -140,6 +211,11 @@ public class TicTacToe extends javax.swing.JFrame {
         B3.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
         B3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B3.setMinimumSize(new java.awt.Dimension(60, 60));
+        B3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B3ActionPerformed(evt);
+            }
+        });
 
         B4.setBackground(new java.awt.Color(255, 255, 255));
         B4.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
@@ -155,11 +231,21 @@ public class TicTacToe extends javax.swing.JFrame {
         B5.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
         B5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B5.setMinimumSize(new java.awt.Dimension(60, 60));
+        B5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B5ActionPerformed(evt);
+            }
+        });
 
         B6.setBackground(new java.awt.Color(255, 255, 255));
         B6.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
         B6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B6.setMinimumSize(new java.awt.Dimension(60, 60));
+        B6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B6ActionPerformed(evt);
+            }
+        });
 
         B7.setBackground(new java.awt.Color(255, 255, 255));
         B7.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
@@ -175,14 +261,9 @@ public class TicTacToe extends javax.swing.JFrame {
         B8.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
         B8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B8.setMinimumSize(new java.awt.Dimension(60, 60));
-
-        B9.setBackground(new java.awt.Color(255, 255, 255));
-        B9.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
-        B9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        B9.setMinimumSize(new java.awt.Dimension(60, 60));
-        B9.addActionListener(new java.awt.event.ActionListener() {
+        B8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B9ActionPerformed(evt);
+                B8ActionPerformed(evt);
             }
         });
 
@@ -194,51 +275,52 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(B0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {B1, B2, B3, B4, B5, B6, B7, B8, B9});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {B0, B1, B2, B3, B4, B5, B6, B7, B8});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(B2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(B0, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {B1, B2, B3, B4, B5, B6, B7, B8, B9});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {B0, B1, B2, B3, B4, B5, B6, B7, B8});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Informações do Jogo TIC TAC TOE"));
 
@@ -386,20 +468,17 @@ public class TicTacToe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
-        
-        if(playerOn){
-            if(B2.getText().equals("")){
-                B2.setText("X");
-                turn();
+    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
+        if(B1.getText().equals("")){
+            if(playerOn){
+                B1.setText("X");
+            }else{
+                B1.setText("O");
             }
-        }else{
-            if(B2.getText().equals("")){
-                B2.setText("O");
-                turn();
-            }
+            jogueN(1);
+            strategyPc();
         }
-    }//GEN-LAST:event_B2ActionPerformed
+    }//GEN-LAST:event_B1ActionPerformed
 
     private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
         // TODO add your handling code here:
@@ -409,62 +488,102 @@ public class TicTacToe extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AboutActionPerformed
 
-    private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
+    private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
+        if(B3.getText().equals("")){
+            if(playerOn){
+                B3.setText("X");
+            }else{
+                B3.setText("O");
+            }
+            jogueN(3);
+            strategyPc();
+        }
         
-        if(playerOn){
-            if(B4.getText().equals("")){
+    }//GEN-LAST:event_B3ActionPerformed
+
+    private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
+        if(B6.getText().equals("")){
+            if(playerOn){
+                B6.setText("X");
+            }else{
+                B6.setText("O");
+            }
+            jogueN(6);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B6ActionPerformed
+
+    private void B0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B0ActionPerformed
+        if(B0.getText().equals("")){
+            if(playerOn){
+                B0.setText("X");
+            }else{
+                B0.setText("O");
+            }
+            jogueN(0);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B0ActionPerformed
+
+    private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
+        if(B8.getText().equals("")){
+            if(playerOn){
+                B8.setText("X");
+            }else{
+                B8.setText("O");
+            }
+            jogueN(8);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B8ActionPerformed
+
+    private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
+        if(B2.getText().equals("")){
+            if(playerOn){
+                B2.setText("X");
+            }else{
+                B2.setText("O");
+            }
+            jogueN(2);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B2ActionPerformed
+
+    private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
+        if(B4.getText().equals("")){
+            if(playerOn){
                 B4.setText("X");
-                turn();
-            }
-        }else{
-            if(B4.getText().equals("")){
+            }else{
                 B4.setText("O");
-                turn();
             }
+            jogueN(4);//passa a posição do vetor a ser preechida
+            strategyPc();
         }
     }//GEN-LAST:event_B4ActionPerformed
 
+    private void B5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ActionPerformed
+        if(B5.getText().equals("")){
+            if(playerOn){
+                B5.setText("X");
+            }else{
+                B5.setText("O");
+            }
+            jogueN(5);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B5ActionPerformed
+
     private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
-        if(playerOn){
-            if(B7.getText().equals("")){
+        if(B7.getText().equals("")){
+            if(playerOn){
                 B7.setText("X");
-                turn();
-            }
-        }else{
-            if(B7.getText().equals("")){
+            }else{
                 B7.setText("O");
-                turn();
             }
+            jogueN(7);//passa a posição do vetor a ser preechida
+            strategyPc();
         }
     }//GEN-LAST:event_B7ActionPerformed
-
-    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-        if(playerOn){
-            if(B1.getText().equals("")){
-                B1.setText("X");
-                turn();
-            }
-        }else{
-            if(B1.getText().equals("")){
-                B1.setText("O");
-                turn();
-            }
-        }   // TODO add your handling code here:
-    }//GEN-LAST:event_B1ActionPerformed
-
-    private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
-        if(playerOn){
-            if(B9.getText().equals("")){
-                B9.setText("X");
-                turn();
-            }
-        }else{
-            if(B9.getText().equals("")){
-                B9.setText("O");
-                turn();
-            }
-        }
-    }//GEN-LAST:event_B9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -482,15 +601,11 @@ public class TicTacToe extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TicTacToe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TicTacToe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TicTacToe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TicTacToe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
       
         /* Create and display the form */
@@ -503,6 +618,7 @@ public class TicTacToe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton About;
+    private javax.swing.JButton B0;
     private javax.swing.JButton B1;
     private javax.swing.JButton B2;
     private javax.swing.JButton B3;
@@ -511,7 +627,6 @@ public class TicTacToe extends javax.swing.JFrame {
     private javax.swing.JButton B6;
     private javax.swing.JButton B7;
     private javax.swing.JButton B8;
-    private javax.swing.JButton B9;
     private javax.swing.JToggleButton Exit;
     private javax.swing.JLabel NEmpate;
     private javax.swing.JLabel NVitoriasComp;
