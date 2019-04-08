@@ -29,7 +29,7 @@ public class TicTacToe extends javax.swing.JFrame {
     public int ganha(boolean p){
         int i, j, r = 0;
         //verifica as linhas
-        for(i=0; i<9; i=i+3){
+        for(i=1; i<10; i=i+3){
             r = Tabuleiro[i] * Tabuleiro[i+1] * Tabuleiro[i+2];
             System.out.println("R linha i " + r);
             if(r==18 || r==50){
@@ -44,7 +44,7 @@ public class TicTacToe extends javax.swing.JFrame {
             r = 0;
         }
         //verifica as colunas
-        for(i=0; i<3; i++){
+        for(i=1; i<4; i++){
             r = Tabuleiro[i] * Tabuleiro[i+3] * Tabuleiro[i+6];
             System.out.println("R coluna i " + r);
             if(r==18 || r==50){
@@ -59,26 +59,26 @@ public class TicTacToe extends javax.swing.JFrame {
             r = 0;
         }
         //verifica as diagonais
-        int d1 = Tabuleiro[0] * Tabuleiro[4] * Tabuleiro[8];
-        int d2 = Tabuleiro[2] * Tabuleiro[4] * Tabuleiro[6];
+        int d1 = Tabuleiro[1] * Tabuleiro[5] * Tabuleiro[9];
+        int d2 = Tabuleiro[3] * Tabuleiro[5] * Tabuleiro[7];
         if(d1==18 || d1==50){
-            if(Tabuleiro[0]==2){
-                return 0;
-            }else if(Tabuleiro[4]==2){
-                return 4;
+            if(Tabuleiro[1]==2){
+                return 1;
+            }else if(Tabuleiro[5]==2){
+                return 5;
             }else{
-                return 8;
+                return 9;
             }        
         }else if(d2==18 || d2==50){
-            if(Tabuleiro[2]==2){
-                return 2;
-            }else if(Tabuleiro[4]==2){
-                return 4;
+            if(Tabuleiro[3]==2){
+                return 3;
+            }else if(Tabuleiro[5]==2){
+                return 5;
             }else{
-                return 6;
+                return 7;
             }
         }else{
-            return 9;
+            return 0;
         }    
     }        
     public void jogueN(int n){
@@ -88,9 +88,9 @@ public class TicTacToe extends javax.swing.JFrame {
         }else{
             Tabuleiro[n] = 3;//X   
         }
-        for (int i=0; i<9; i++) {
+        for (int i=1; i<10; i++) {
              System.out.print(Tabuleiro[i] + " | ");
-             if(i==2||i==5||i==8)
+             if(i==3||i==6||i==9)
                 System.out.println("");
         }
         System.out.println("-----------------------");
@@ -113,8 +113,8 @@ public class TicTacToe extends javax.swing.JFrame {
     }
     
     private void initTabuleiro() {
-        Tabuleiro = new int[9]; 
-        for (int i=0; i<9; i++) {
+        Tabuleiro = new int[10]; 
+        for (int i=0; i<10; i++) {
              Tabuleiro[i] = 2;
         }
     }
@@ -129,25 +129,23 @@ public class TicTacToe extends javax.swing.JFrame {
     private void strategyPc(){
         switch(jogada){
             case 0://jogada 1;
-                B0.setText("X");
+                B1.setText("X");
                 jogueN(0);
                 break;
             case 1://jogada 2;
-                if(Tabuleiro[4] == 2){
-                    B4.setText("O");
-                    jogueN(4);
+                if(Tabuleiro[5] == 2){
+                    B5.setText("O");
+                    jogueN(5);
                 }else{
-                    B0.setText("O");
-                    jogueN(0);   
+                    B1.setText("O");
+                    jogueN(1);   
                 }
                 break;
             case 2://jogado 3;
-                B0.setText("X");
-                jogueN(0);
                 break;
             case 3://jogada  4;
                 int resp = ganha(computerOn);
-                if(resp!=9){//se 
+                if(resp!=0){//se 
                     System.out.println("o Botão a ser preenchido é" + resp);
                     setTextBtn("O",resp);
                     jogueN(resp);
@@ -176,9 +174,6 @@ public class TicTacToe extends javax.swing.JFrame {
     
     public void setTextBtn(String c,int nButton){ //poderia usar um padrão de projeto Strategy implementar futuramente
         switch (nButton) {
-            case 0:
-                B0.setText(c);
-                break;
             case 1:
                 B1.setText(c);
                 break;
@@ -193,21 +188,20 @@ public class TicTacToe extends javax.swing.JFrame {
                 break;
             case 5:
                 B5.setText(c);
-                break;    
+                break;
             case 6:
                 B6.setText(c);
-                break;
+                break;    
             case 7:
                 B7.setText(c);
                 break;
-            default:
+            case 8:
                 B8.setText(c);
                 break;
         }
     }
     
     public void clean(){
-        B0.setText("");
         B1.setText("");
         B2.setText("");
         B3.setText("");
@@ -216,6 +210,7 @@ public class TicTacToe extends javax.swing.JFrame {
         B6.setText("");
         B7.setText("");
         B8.setText("");
+        B9.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -228,7 +223,6 @@ public class TicTacToe extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        B0 = new javax.swing.JButton();
         B1 = new javax.swing.JButton();
         B2 = new javax.swing.JButton();
         B3 = new javax.swing.JButton();
@@ -237,6 +231,7 @@ public class TicTacToe extends javax.swing.JFrame {
         B6 = new javax.swing.JButton();
         B7 = new javax.swing.JButton();
         B8 = new javax.swing.JButton();
+        B9 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         NVitoriasPlayer = new javax.swing.JLabel();
@@ -268,16 +263,6 @@ public class TicTacToe extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Jogo"));
-
-        B0.setBackground(new java.awt.Color(255, 255, 255));
-        B0.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
-        B0.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        B0.setMinimumSize(new java.awt.Dimension(60, 60));
-        B0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B0ActionPerformed(evt);
-            }
-        });
 
         B1.setBackground(new java.awt.Color(255, 255, 255));
         B1.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
@@ -359,6 +344,16 @@ public class TicTacToe extends javax.swing.JFrame {
             }
         });
 
+        B9.setBackground(new java.awt.Color(255, 255, 255));
+        B9.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        B9.setMinimumSize(new java.awt.Dimension(60, 60));
+        B9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -367,52 +362,52 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(B0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {B0, B1, B2, B3, B4, B5, B6, B7, B8});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {B1, B2, B3, B4, B5, B6, B7, B8, B9});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(B2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(B0, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {B0, B1, B2, B3, B4, B5, B6, B7, B8});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {B1, B2, B3, B4, B5, B6, B7, B8, B9});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Informações do Jogo TIC TAC TOE"));
 
@@ -560,17 +555,17 @@ public class TicTacToe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-        if(B1.getText().equals("")){
+    private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
+        if(B2.getText().equals("")){
             if(playerOn){
-                B1.setText("X");
+                B2.setText("X");
             }else{
-                B1.setText("O");
+                B2.setText("O");
             }
-            jogueN(1);
+            jogueN(2);
             strategyPc();
         }
-    }//GEN-LAST:event_B1ActionPerformed
+    }//GEN-LAST:event_B2ActionPerformed
 
     private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
         // TODO add your handling code here:
@@ -580,67 +575,6 @@ public class TicTacToe extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AboutActionPerformed
 
-    private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
-        if(B3.getText().equals("")){
-            if(playerOn){
-                B3.setText("X");
-            }else{
-                B3.setText("O");
-            }
-            jogueN(3);
-            strategyPc();
-        }
-        
-    }//GEN-LAST:event_B3ActionPerformed
-
-    private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
-        if(B6.getText().equals("")){
-            if(playerOn){
-                B6.setText("X");
-            }else{
-                B6.setText("O");
-            }
-            jogueN(6);//passa a posição do vetor a ser preechida
-            strategyPc();
-        }
-    }//GEN-LAST:event_B6ActionPerformed
-
-    private void B0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B0ActionPerformed
-        if(B0.getText().equals("")){
-            if(playerOn){
-                B0.setText("X");
-            }else{
-                B0.setText("O");
-            }
-            jogueN(0);//passa a posição do vetor a ser preechida
-            strategyPc();
-        }
-    }//GEN-LAST:event_B0ActionPerformed
-
-    private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
-        if(B8.getText().equals("")){
-            if(playerOn){
-                B8.setText("X");
-            }else{
-                B8.setText("O");
-            }
-            jogueN(8);//passa a posição do vetor a ser preechida
-            strategyPc();
-        }
-    }//GEN-LAST:event_B8ActionPerformed
-
-    private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
-        if(B2.getText().equals("")){
-            if(playerOn){
-                B2.setText("X");
-            }else{
-                B2.setText("O");
-            }
-            jogueN(2);//passa a posição do vetor a ser preechida
-            strategyPc();
-        }
-    }//GEN-LAST:event_B2ActionPerformed
-
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
         if(B4.getText().equals("")){
             if(playerOn){
@@ -648,10 +582,59 @@ public class TicTacToe extends javax.swing.JFrame {
             }else{
                 B4.setText("O");
             }
-            jogueN(4);//passa a posição do vetor a ser preechida
+            jogueN(4);
             strategyPc();
         }
+        
     }//GEN-LAST:event_B4ActionPerformed
+
+    private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
+        if(B7.getText().equals("")){
+            if(playerOn){
+                B7.setText("X");
+            }else{
+                B7.setText("O");
+            }
+            jogueN(7);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B7ActionPerformed
+
+    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
+        if(B1.getText().equals("")){
+            if(playerOn){
+                B1.setText("X");
+            }else{
+                B1.setText("O");
+            }
+            jogueN(1);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B1ActionPerformed
+
+    private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
+        if(B9.getText().equals("")){
+            if(playerOn){
+                B9.setText("X");
+            }else{
+                B9.setText("O");
+            }
+            jogueN(9);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B9ActionPerformed
+
+    private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
+        if(B3.getText().equals("")){
+            if(playerOn){
+                B3.setText("X");
+            }else{
+                B3.setText("O");
+            }
+            jogueN(3);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B3ActionPerformed
 
     private void B5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ActionPerformed
         if(B5.getText().equals("")){
@@ -665,17 +648,29 @@ public class TicTacToe extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_B5ActionPerformed
 
-    private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
-        if(B7.getText().equals("")){
+    private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
+        if(B6.getText().equals("")){
             if(playerOn){
-                B7.setText("X");
+                B6.setText("X");
             }else{
-                B7.setText("O");
+                B6.setText("O");
             }
-            jogueN(7);//passa a posição do vetor a ser preechida
+            jogueN(6);//passa a posição do vetor a ser preechida
             strategyPc();
         }
-    }//GEN-LAST:event_B7ActionPerformed
+    }//GEN-LAST:event_B6ActionPerformed
+
+    private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
+        if(B8.getText().equals("")){
+            if(playerOn){
+                B8.setText("X");
+            }else{
+                B8.setText("O");
+            }
+            jogueN(8);//passa a posição do vetor a ser preechida
+            strategyPc();
+        }
+    }//GEN-LAST:event_B8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -710,7 +705,6 @@ public class TicTacToe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton About;
-    private javax.swing.JButton B0;
     private javax.swing.JButton B1;
     private javax.swing.JButton B2;
     private javax.swing.JButton B3;
@@ -719,6 +713,7 @@ public class TicTacToe extends javax.swing.JFrame {
     private javax.swing.JButton B6;
     private javax.swing.JButton B7;
     private javax.swing.JButton B8;
+    private javax.swing.JButton B9;
     private javax.swing.JToggleButton Exit;
     private javax.swing.JLabel NEmpate;
     private javax.swing.JLabel NVitoriasComp;
