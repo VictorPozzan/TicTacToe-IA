@@ -25,8 +25,61 @@ public class TicTacToe extends javax.swing.JFrame {
     //--------------------------------------------//
     public void faz2(){
     }
-    public void ganha(int p){
-        
+    
+    public int ganha(boolean p){
+        int i, j, r = 0;
+        //verifica as linhas
+        for(i=0; i<9; i=i+3){
+            r = Tabuleiro[i] * Tabuleiro[i+1] * Tabuleiro[i+2];
+            System.out.println("R linha i " + r);
+            if(r==18 || r==50){
+                if(Tabuleiro[i] == 2){ //deselegante
+                    return i;
+                }else if(Tabuleiro[i+1]==2){
+                    return i+1;
+                }else{
+                    return i+2;
+                }
+            }
+            r = 0;
+        }
+        //verifica as colunas
+        for(i=0; i<3; i++){
+            r = Tabuleiro[i] * Tabuleiro[i+3] * Tabuleiro[i+6];
+            System.out.println("R coluna i " + r);
+            if(r==18 || r==50){
+                if(Tabuleiro[i] == 2){ //deselegante
+                    return i;
+                }else if(Tabuleiro[i+1]==2){
+                    return i+3;
+                }else{
+                    return i+6;
+                }
+            }
+            r = 0;
+        }
+        //verifica as diagonais
+        int d1 = Tabuleiro[0] * Tabuleiro[4] * Tabuleiro[8];
+        int d2 = Tabuleiro[2] * Tabuleiro[4] * Tabuleiro[6];
+        if(d1==18 || d1==50){
+            if(Tabuleiro[0]==2){
+                return 0;
+            }else if(Tabuleiro[4]==2){
+                return 4;
+            }else{
+                return 8;
+            }        
+        }else if(d2==18 || d2==50){
+            if(Tabuleiro[2]==2){
+                return 2;
+            }else if(Tabuleiro[4]==2){
+                return 4;
+            }else{
+                return 6;
+            }
+        }else{
+            return 9;
+        }    
     }        
     public void jogueN(int n){
         jogada++;
@@ -46,9 +99,10 @@ public class TicTacToe extends javax.swing.JFrame {
     public boolean randFirstplayer(){
         Random rand = new Random();
         // Obtain a number between [0 - 9].
-        int n = rand.nextInt(9);
-        System.out.println("numero sorteado "+  n );
-        if(n%2 == 0){
+       // int n = rand.nextInt(9);
+       // System.out.println("numero sorteado "+  n );
+       int n = 2;//teste com o numero par 
+       if(n%2 == 0){
             playerOn = true; //X
             computerOn = false; //O
             return true;
@@ -74,7 +128,7 @@ public class TicTacToe extends javax.swing.JFrame {
     
     private void strategyPc(){
         switch(jogada){
-            case 0://jogada 1
+            case 0://jogada 1;
                 B0.setText("X");
                 jogueN(0);
                 break;
@@ -87,11 +141,17 @@ public class TicTacToe extends javax.swing.JFrame {
                     jogueN(0);   
                 }
                 break;
-            case 2:
+            case 2://jogado 3;
                 B0.setText("X");
                 jogueN(0);
                 break;
-            case 3:
+            case 3://jogada  4;
+                int resp = ganha(computerOn);
+                if(resp!=9){//se 
+                    System.out.println("o Botão a ser preenchido é" + resp);
+                    setTextBtn("O",resp);
+                    jogueN(resp);
+                }
                 break;
             case 4:
                 break;
@@ -112,6 +172,38 @@ public class TicTacToe extends javax.swing.JFrame {
         VitoriaComp++;
         NVitoriasComp.setText("Número de Vitórias: " + VitoriaComp);
         clean();
+    }
+    
+    public void setTextBtn(String c,int nButton){ //poderia usar um padrão de projeto Strategy implementar futuramente
+        switch (nButton) {
+            case 0:
+                B0.setText(c);
+                break;
+            case 1:
+                B1.setText(c);
+                break;
+            case 2:
+                B2.setText(c);
+                break;
+            case 3:
+                B3.setText(c);
+                break;
+            case 4:
+                B4.setText(c);
+                break;
+            case 5:
+                B5.setText(c);
+                break;    
+            case 6:
+                B6.setText(c);
+                break;
+            case 7:
+                B7.setText(c);
+                break;
+            default:
+                B8.setText(c);
+                break;
+        }
     }
     
     public void clean(){
