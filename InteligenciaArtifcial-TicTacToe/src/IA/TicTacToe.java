@@ -23,7 +23,19 @@ public class TicTacToe extends javax.swing.JFrame {
         gameplay();
     }
     //--------------------------------------------//
-    public void faz2(){
+    public int faz2(){
+        if(Tabuleiro[5]==2){
+            return 5;
+        }else{
+            System.out.println("jfaz2()()");
+            for(int i=8; i>2; i=i-2){
+                System.out.println("i :"+ i +" tab["+Tabuleiro[i]+"]");
+                if(Tabuleiro[i]==2){
+                    return i;
+                }
+            }
+        }
+        return 0;
     }
     
     public int ganha(boolean p){
@@ -50,7 +62,7 @@ public class TicTacToe extends javax.swing.JFrame {
             if(r==18 || r==50){
                 if(Tabuleiro[i] == 2){ //deselegante
                     return i;
-                }else if(Tabuleiro[i+1]==2){
+                }else if(Tabuleiro[i+3]==2){
                     return i+3;
                 }else{
                     return i+6;
@@ -149,6 +161,9 @@ public class TicTacToe extends javax.swing.JFrame {
                     System.out.println("o Botão a ser preenchido é" + resp);
                     setTextBtn("O",resp);
                     jogueN(resp);
+                }else{
+                    setTextBtn("O", faz2());
+                    jogueN(faz2());
                 }
                 break;
             case 4:
@@ -198,6 +213,8 @@ public class TicTacToe extends javax.swing.JFrame {
             case 8:
                 B8.setText(c);
                 break;
+            case 9:
+                B9.setText(c);
         }
     }
     
