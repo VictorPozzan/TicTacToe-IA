@@ -8,6 +8,7 @@ package IA;
 import java.awt.Color;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.objects.NativeArray;
 
 /**
  *
@@ -28,7 +29,7 @@ public class TicTacToe extends javax.swing.JFrame {
             return 5;
         }else{
             System.out.println("jfaz2()()");
-            for(int i=8; i>2; i=i-2){
+            for(int i=8; i>1; i=i-2){
                 System.out.println("i :"+ i +" tab["+Tabuleiro[i]+"]");
                 if(Tabuleiro[i]==2){
                     return i;
@@ -39,12 +40,17 @@ public class TicTacToe extends javax.swing.JFrame {
     }
     
     public int ganha(boolean p){
-        int i, j, r = 0;
+        int i, j, r = 0, g = 0;
+        if(p){//se for verdadeiro Computador é X
+            g = 18;//ou seja se for igual a 18 ele ganha
+        }else{
+            g = 50;
+        }
         //verifica as linhas
         for(i=1; i<10; i=i+3){
             r = Tabuleiro[i] * Tabuleiro[i+1] * Tabuleiro[i+2];
             System.out.println("R linha i " + r);
-            if(r==18 || r==50){
+            if(r== g){
                 if(Tabuleiro[i] == 2){ //deselegante
                     return i;
                 }else if(Tabuleiro[i+1]==2){
@@ -53,27 +59,30 @@ public class TicTacToe extends javax.swing.JFrame {
                     return i+2;
                 }
             }
-            r = 0;
+           // r = 0;
         }
         //verifica as colunas
         for(i=1; i<4; i++){
             r = Tabuleiro[i] * Tabuleiro[i+3] * Tabuleiro[i+6];
             System.out.println("R coluna i " + r);
-            if(r==18 || r==50){
+            if(r==g){
                 if(Tabuleiro[i] == 2){ //deselegante
                     return i;
                 }else if(Tabuleiro[i+3]==2){
                     return i+3;
-                }else{
+                }else if(Tabuleiro[i+6]==2){
                     return i+6;
                 }
             }
-            r = 0;
+//            else{
+//                r = 0;   
+//            }
         }
         //verifica as diagonais
         int d1 = Tabuleiro[1] * Tabuleiro[5] * Tabuleiro[9];
         int d2 = Tabuleiro[3] * Tabuleiro[5] * Tabuleiro[7];
-        if(d1==18 || d1==50){
+        System.out.println("d2"+d2);
+        if(d1==g){
             if(Tabuleiro[1]==2){
                 return 1;
             }else if(Tabuleiro[5]==2){
@@ -81,7 +90,7 @@ public class TicTacToe extends javax.swing.JFrame {
             }else{
                 return 9;
             }        
-        }else if(d2==18 || d2==50){
+        }else if(d2== g){
             if(Tabuleiro[3]==2){
                 return 3;
             }else if(Tabuleiro[5]==2){
@@ -92,7 +101,8 @@ public class TicTacToe extends javax.swing.JFrame {
         }else{
             return 0;
         }    
-    }        
+    }      
+    
     public void jogueN(int n){
         jogada++;
         if(jogada%2==0){//jogada é par O
@@ -113,7 +123,7 @@ public class TicTacToe extends javax.swing.JFrame {
         // Obtain a number between [0 - 9].
        // int n = rand.nextInt(9);
        // System.out.println("numero sorteado "+  n );
-       int n = 2;//teste com o numero par 
+       int n = 1;//teste com o numero par 
        if(n%2 == 0){
             playerOn = true; //X
             computerOn = false; //O
@@ -139,10 +149,11 @@ public class TicTacToe extends javax.swing.JFrame {
     }
     
     private void strategyPc(){
+        int respX, respO;
         switch(jogada){
             case 0://jogada 1;
                 B1.setText("X");
-                jogueN(0);
+                jogueN(1);
                 break;
             case 1://jogada 2;
                 if(Tabuleiro[5] == 2){
@@ -154,27 +165,114 @@ public class TicTacToe extends javax.swing.JFrame {
                 }
                 break;
             case 2://jogado 3;
+                if(Tabuleiro[9]==2){
+                    B9.setText("X");
+                    jogueN(9);
+                }else{
+                    B3.setText("X");
+                    jogueN(3);
+                }
                 break;
             case 3://jogada  4;
-                int resp = ganha(computerOn);
-                if(resp!=0){//se 
-                    System.out.println("o Botão a ser preenchido é" + resp);
-                    setTextBtn("O",resp);
-                    jogueN(resp);
+                respX = ganha(playerOn);
+                if(respX!=0){//se 
+                    System.out.println("o Botão a ser preenchido é" + respX);
+                    setTextBtn("O",respX);
+                    jogueN(respX);
                 }else{
                     setTextBtn("O", faz2());
                     jogueN(faz2());
                 }
                 break;
-            case 4:
+            case 4://jogada 5
+                respX  = ganha(computerOn);
+                respO = ganha(playerOn);
+                if(respX != 0){
+                    jogueN(respX);
+                    setTextBtn("X", respX);
+                }else if(respO != 0){
+                    jogueN(respO);
+                    setTextBtn("X", respO);
+                }else if(Tabuleiro[7] == 2){
+                    jogueN(7);
+                    setTextBtn("X", 7);
+                }else{
+                    jogueN(3);
+                    setTextBtn("X", 3);
+                }
                 break;
-            case 5:
+            case 5://jogada 6
+                System.out.println("jogada 6");
+                respX = ganha(playerOn);
+                respO = ganha(computerOn);
+                if(respO != 0){
+                    jogueN(respO);
+                    setTextBtn("O",respO);
+                }else if(respX != 0){
+                    jogueN(respX);
+                    setTextBtn("O", respX);
+                }else{
+                    setTextBtn("O",faz2());
+                    jogueN(faz2());
+                }
                 break;
-            case 6:
+            case 6://jogada 7
+                respX = ganha(computerOn);
+                respO = ganha(playerOn);
+                if(respX != 0){
+                    jogueN(respX);
+                    setTextBtn("X",respX);
+                }else if(respO != 0){
+                    jogueN(respO);
+                    setTextBtn("X", respO);
+                }else{    
+                    for(int i=1; i<=9; i++){
+                            if(Tabuleiro[i]==2){
+                                jogueN(i);
+                                setTextBtn("X", i);
+                                i = 9;
+                        }
+                    }
+                }    
                 break;
-            case 7:
+            case 7://jogada 8
+                System.out.println("jogada 6");
+                respO = ganha(computerOn);
+                respX = ganha(playerOn);
+                if(respO != 0){
+                    jogueN(respO);
+                    setTextBtn("O",respO);
+                }else if(respX != 0){
+                    jogueN(respX);
+                    setTextBtn("O",respX);                    
+                }else{
+                    for(int i=1; i<=9; i++){
+                        if(Tabuleiro[i]==2){
+                            jogueN(i);
+                            setTextBtn("O", i);
+                            i = 9;
+                        }
+                    }
+                }
                 break;
-            case 8:
+            case 8://jogada 9
+                respX = ganha(computerOn);
+                respO = ganha(playerOn);
+                if(respX != 0){
+                    jogueN(respX);
+                    setTextBtn("X",respX);
+                }else if(respO != 0){
+                    jogueN(respO);
+                    setTextBtn("X", respO);
+                }else{    
+                    for(int i=1; i<=9; i++){
+                            if(Tabuleiro[i]==2){
+                                jogueN(i);
+                                setTextBtn("X", i);
+                                i = 9;
+                        }
+                    }
+                }
                 break;
         }
     }
@@ -228,6 +326,9 @@ public class TicTacToe extends javax.swing.JFrame {
         B7.setText("");
         B8.setText("");
         B9.setText("");
+        for(int i = 1; i<=9; i++){
+            Tabuleiro[i]=2;
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -585,7 +686,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_B2ActionPerformed
 
     private void NewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGameActionPerformed
-        // TODO add your handling code here:
+        //clean();
     }//GEN-LAST:event_NewGameActionPerformed
 
     private void AboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutActionPerformed
