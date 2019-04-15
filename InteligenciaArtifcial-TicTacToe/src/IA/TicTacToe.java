@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package IA;
 
-import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Victor Augusto Pozzan
  */
 public class TicTacToe extends javax.swing.JFrame {
@@ -21,7 +14,7 @@ public class TicTacToe extends javax.swing.JFrame {
         initComponents();
         gameplay();
     }
-    //--------------------------------------------//
+
     public int faz2(){
         if(Tabuleiro[5]==2){
             return 5;
@@ -34,11 +27,12 @@ public class TicTacToe extends javax.swing.JFrame {
         }
         return 0;
     }
-    
+    /*ganha(p) verifica se o jogador passado ganha ou bloqueia 
+    retorna o indice de qual posição deve ser jogada caso não retornada o retorno é 0 */
     public int ganha(boolean p){
         int i, j, r = 0, g = 0;
         if(p){//se for verdadeiro Computador é X
-            g = 18;//ou seja se for igual a 18 ele ganha
+            g = 18;
         }else{
             g = 50;
         }
@@ -46,7 +40,7 @@ public class TicTacToe extends javax.swing.JFrame {
         for(i=1; i<10; i=i+3){
             r = Tabuleiro[i] * Tabuleiro[i+1] * Tabuleiro[i+2];
             if(r== g){
-                if(Tabuleiro[i] == 2){ //deselegante
+                if(Tabuleiro[i] == 2){ 
                     return i;
                 }else if(Tabuleiro[i+1]==2){
                     return i+1;
@@ -54,13 +48,12 @@ public class TicTacToe extends javax.swing.JFrame {
                     return i+2;
                 }
             }
-           // r = 0;
         }
         //verifica as colunas
         for(i=1; i<4; i++){
             r = Tabuleiro[i] * Tabuleiro[i+3] * Tabuleiro[i+6];
             if(r==g){
-                if(Tabuleiro[i] == 2){ //deselegante
+                if(Tabuleiro[i] == 2){
                     return i;
                 }else if(Tabuleiro[i+3]==2){
                     return i+3;
@@ -93,6 +86,7 @@ public class TicTacToe extends javax.swing.JFrame {
         }    
     }      
     
+    /*jogueN(n) conta o as jogadas e marca no tabuleiro X=3 ou 5=O*/
     public void jogueN(int n){
         jogada++;
         if(jogada%2==0){//jogada é par O
@@ -107,12 +101,9 @@ public class TicTacToe extends javax.swing.JFrame {
         }
         System.out.println("-----------------------");
     }
-    //-------------------------------------------//
-    public boolean randFirstplayer(){
-        //Random rand = new Random();
-        // Obtain a number between [0 - 9]. 
-        //int n = rand.nextInt(9);
-       ///int n = 2;//teste com o numero par 
+    
+    /*first player alterna qual jogado começa a jogar*/
+    public boolean Firstplayer(){
        boolean retorno;
        if(turno%2 == 0){
             playerOn = true; //X
@@ -127,6 +118,7 @@ public class TicTacToe extends javax.swing.JFrame {
         return retorno;
     }
     
+    /*inicializa o tabuleiro com 2 = posição vazia */
     private void initTabuleiro() {
         Tabuleiro = new int[10]; 
         for (int i=0; i<10; i++) {
@@ -134,13 +126,15 @@ public class TicTacToe extends javax.swing.JFrame {
         }
     }
    
+    /*gameplay() inicia o jogo*/
     private void gameplay() {
         initTabuleiro();
-        if(!randFirstplayer()){
+        if(!Firstplayer()){
             strategyPc();
         }
     }
     
+    /*strategyPC()implementa as estratégias do computador conforme a jogada++*/
     private void strategyPc(){
         int respX, respO;
         switch(jogada){
@@ -288,11 +282,13 @@ public class TicTacToe extends javax.swing.JFrame {
         }
     }
     
-    public void displayWinner(String name){//implementar o restante!
+    /*mostra em uma mensagem de qual jogador ganhou ou se deu empate*/
+    public void displayWinner(String name){
         JOptionPane.showMessageDialog(null, ""+ name);
     }
     
-    public void setTextBtn(String c,int nButton){ //poderia usar um padrão de projeto Strategy implementar futuramente
+    /*setTextBtn(c, nButton) qual a string(X ou O) e qual o botao deve ser ser marcado na inteface gráfica*/
+    public void setTextBtn(String c,int nButton){ 
         switch (nButton) {
             case 1:
                 B1.setText(c);
@@ -323,8 +319,8 @@ public class TicTacToe extends javax.swing.JFrame {
         }
     }
     
+    /*clean() limpa as variáveis utilizadas para que possa ser possível continuar o jogo*/
     public void clean(){
-        System.out.println("COMEEEEÇAAAA NOOOVOOO JOOOOGGGOOO");
         jogada = 0;
         playerOn = false;
         computerOn = false;
@@ -340,6 +336,9 @@ public class TicTacToe extends javax.swing.JFrame {
         gameplay();
     }
     
+    /*winner(p) verifica se há algum ganhador e qual o jogador, também verifica se há empate
+    retorna 1 ou 2 caso há vitória ou empate respectivamente
+    retorna 0 caso não há nenhum vencedor ou empate*/
     private int winner(boolean p){
         int i, j, r = 0, g = 0;
         boolean win = false;
@@ -455,7 +454,6 @@ public class TicTacToe extends javax.swing.JFrame {
         NEmpate = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         NovoJogo = new javax.swing.JToggleButton();
-        About = new javax.swing.JToggleButton();
         Exit = new javax.swing.JToggleButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -685,13 +683,6 @@ public class TicTacToe extends javax.swing.JFrame {
             }
         });
 
-        About.setText("Info");
-        About.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AboutActionPerformed(evt);
-            }
-        });
-
         Exit.setText("Sair");
         Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -705,18 +696,13 @@ public class TicTacToe extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(NovoJogo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(About)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(NovoJogo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {About, Exit, NovoJogo});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Exit, NovoJogo});
 
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -724,9 +710,7 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NovoJogo)
                     .addComponent(Exit))
-                .addGap(18, 18, 18)
-                .addComponent(About)
-                .addGap(0, 36, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
@@ -751,7 +735,7 @@ public class TicTacToe extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -813,10 +797,6 @@ public class TicTacToe extends javax.swing.JFrame {
         NVitoriasPlayer.setText("Número de Vitórias: " + VitoriaPlayer);
         clean();
     }//GEN-LAST:event_NovoJogoActionPerformed
-
-    private void AboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutActionPerformed
-        
-    }//GEN-LAST:event_AboutActionPerformed
 
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
         if(B4.getText().equals("")){
@@ -983,7 +963,6 @@ public class TicTacToe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton About;
     private javax.swing.JButton B1;
     private javax.swing.JButton B2;
     private javax.swing.JButton B3;
