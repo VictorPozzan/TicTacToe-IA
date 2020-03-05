@@ -1,5 +1,9 @@
 package IA;
 
+import com.sun.javafx.tk.Toolkit;
+import java.awt.Color;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -139,23 +143,28 @@ public class TicTacToe extends javax.swing.JFrame {
         int respX, respO;
         switch(jogada){
             case 0://jogada 1;
+                B1.setForeground(new Color(228,65,134));
                 B1.setText("X");
                 jogueN(1);
                 break;
             case 1://jogada 2;
                 if(Tabuleiro[5] == 2){
+                    B5.setForeground(new Color(228,65,134));
                     B5.setText("O");
                     jogueN(5);
                 }else{
+                    B1.setForeground(new Color(228,65,134));
                     B1.setText("O");
                     jogueN(1);   
                 }
                 break;
             case 2://jogado 3;
                 if(Tabuleiro[9]==2){
+                    B9.setForeground(new Color(228,65,134));
                     B9.setText("X");
                     jogueN(9);
                 }else{
+                    B3.setForeground(new Color(228,65,134));
                     B3.setText("X");
                     jogueN(3);
                 }
@@ -291,30 +300,39 @@ public class TicTacToe extends javax.swing.JFrame {
     public void setTextBtn(String c,int nButton){ 
         switch (nButton) {
             case 1:
+                B1.setForeground(new Color(228,65,134));
                 B1.setText(c);
                 break;
             case 2:
+                B2.setForeground(new Color(228,65,134));
                 B2.setText(c);
                 break;
             case 3:
+                B3.setForeground(new Color(228,65,134));
                 B3.setText(c);
                 break;
             case 4:
+                B4.setForeground(new Color(228,65,134));
                 B4.setText(c);
                 break;
             case 5:
+                B5.setForeground(new Color(228,65,134));
                 B5.setText(c);
                 break;
             case 6:
+                B6.setForeground(new Color(228,65,134));
                 B6.setText(c);
                 break;    
             case 7:
+                B7.setForeground(new Color(228,65,134));
                 B7.setText(c);
                 break;
             case 8:
+                B8.setForeground(new Color(228,65,134));
                 B8.setText(c);
                 break;
             case 9:
+                B9.setForeground(new Color(228,65,134));
                 B9.setText(c);
         }
     }
@@ -419,7 +437,7 @@ public class TicTacToe extends javax.swing.JFrame {
         if(verifica==9){
             Empates++;
             NEmpate.setText("Número de Empates: "+ Empates);
-            displayWinner("Ixe! Deu empate");
+            displayWinner("Empate");
             return 2;
         }
         return 0;
@@ -454,9 +472,11 @@ public class TicTacToe extends javax.swing.JFrame {
         NEmpate = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         NovoJogo = new javax.swing.JToggleButton();
-        Exit = new javax.swing.JToggleButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -472,12 +492,13 @@ public class TicTacToe extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tic Tac Toe");
         setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(240, 249, 247));
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Jogo"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Tabuleiro"));
 
         B1.setBackground(new java.awt.Color(255, 255, 255));
-        B1.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B1.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B1.setMinimumSize(new java.awt.Dimension(60, 60));
         B1.addActionListener(new java.awt.event.ActionListener() {
@@ -487,7 +508,7 @@ public class TicTacToe extends javax.swing.JFrame {
         });
 
         B2.setBackground(new java.awt.Color(255, 255, 255));
-        B2.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B2.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B2.setMinimumSize(new java.awt.Dimension(60, 60));
         B2.addActionListener(new java.awt.event.ActionListener() {
@@ -497,7 +518,7 @@ public class TicTacToe extends javax.swing.JFrame {
         });
 
         B3.setBackground(new java.awt.Color(255, 255, 255));
-        B3.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B3.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B3.setMinimumSize(new java.awt.Dimension(60, 60));
         B3.addActionListener(new java.awt.event.ActionListener() {
@@ -507,7 +528,7 @@ public class TicTacToe extends javax.swing.JFrame {
         });
 
         B4.setBackground(new java.awt.Color(255, 255, 255));
-        B4.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B4.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B4.setMinimumSize(new java.awt.Dimension(60, 60));
         B4.addActionListener(new java.awt.event.ActionListener() {
@@ -517,7 +538,7 @@ public class TicTacToe extends javax.swing.JFrame {
         });
 
         B5.setBackground(new java.awt.Color(255, 255, 255));
-        B5.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B5.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B5.setMinimumSize(new java.awt.Dimension(60, 60));
         B5.addActionListener(new java.awt.event.ActionListener() {
@@ -527,7 +548,7 @@ public class TicTacToe extends javax.swing.JFrame {
         });
 
         B6.setBackground(new java.awt.Color(255, 255, 255));
-        B6.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B6.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B6.setMinimumSize(new java.awt.Dimension(60, 60));
         B6.addActionListener(new java.awt.event.ActionListener() {
@@ -537,7 +558,7 @@ public class TicTacToe extends javax.swing.JFrame {
         });
 
         B7.setBackground(new java.awt.Color(255, 255, 255));
-        B7.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B7.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B7.setMinimumSize(new java.awt.Dimension(60, 60));
         B7.addActionListener(new java.awt.event.ActionListener() {
@@ -547,7 +568,7 @@ public class TicTacToe extends javax.swing.JFrame {
         });
 
         B8.setBackground(new java.awt.Color(255, 255, 255));
-        B8.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B8.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B8.setMinimumSize(new java.awt.Dimension(60, 60));
         B8.addActionListener(new java.awt.event.ActionListener() {
@@ -557,7 +578,7 @@ public class TicTacToe extends javax.swing.JFrame {
         });
 
         B9.setBackground(new java.awt.Color(255, 255, 255));
-        B9.setFont(new java.awt.Font("Ravie", 1, 36)); // NOI18N
+        B9.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         B9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         B9.setMinimumSize(new java.awt.Dimension(60, 60));
         B9.addActionListener(new java.awt.event.ActionListener() {
@@ -571,66 +592,76 @@ public class TicTacToe extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(B6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {B1, B2, B3, B4, B5, B6, B7, B8, B9});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {B2, B3, B4, B5, B7, B8, B9});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(B3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(B5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(B4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
+                    .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {B1, B2, B3, B4, B5, B6, B7, B8, B9});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {B1, B2, B3, B4, B5, B7, B8, B9});
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Informações do Jogo TIC TAC TOE"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Placar"));
 
+        jLabel1.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(101, 88, 127));
         jLabel1.setText("Jogador");
 
+        NVitoriasPlayer.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 11)); // NOI18N
+        NVitoriasPlayer.setForeground(new java.awt.Color(80, 189, 161));
         NVitoriasPlayer.setText("Número de Vitórias: 0");
 
+        jLabel3.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(232, 95, 153));
         jLabel3.setText("Computador");
 
+        NVitoriasComp.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 11)); // NOI18N
+        NVitoriasComp.setForeground(new java.awt.Color(80, 189, 161));
         NVitoriasComp.setText("Número de Vitórias: 0");
 
+        NEmpate.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 11)); // NOI18N
+        NEmpate.setForeground(new java.awt.Color(80, 189, 161));
         NEmpate.setText("Número de Empates: 0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -647,7 +678,7 @@ public class TicTacToe extends javax.swing.JFrame {
                             .addComponent(NVitoriasPlayer)
                             .addComponent(jLabel3)
                             .addComponent(NVitoriasComp))
-                        .addContainerGap(117, Short.MAX_VALUE))
+                        .addContainerGap(48, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(NEmpate)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -660,22 +691,23 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NVitoriasPlayer)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NVitoriasComp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(NEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Controle do Jogo"));
         jPanel4.setToolTipText("");
 
+        NovoJogo.setBackground(new java.awt.Color(241, 136, 103));
+        NovoJogo.setFont(new java.awt.Font("Rockwell Condensed", 1, 12)); // NOI18N
         NovoJogo.setText("Novo Jogo");
         NovoJogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -683,43 +715,44 @@ public class TicTacToe extends javax.swing.JFrame {
             }
         });
 
-        Exit.setText("Sair");
-        Exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(NovoJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(NovoJogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NovoJogo, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Exit, NovoJogo});
-
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NovoJogo)
-                    .addComponent(Exit))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel2.setBackground(new java.awt.Color(153, 153, 153));
         jLabel2.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("TIC-TAC-TOE");
         jLabel2.setFocusCycleRoot(true);
+
+        jLabel4.setFont(new java.awt.Font("MS Reference Sans Serif", 3, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("vs");
+
+        jLabel5.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(101, 88, 127));
+        jLabel5.setText("Jogador ");
+
+        jLabel6.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(232, 95, 153));
+        jLabel6.setText(" Computador");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -729,13 +762,26 @@ public class TicTacToe extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -744,33 +790,39 @@ public class TicTacToe extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
+        B2.setForeground(new Color(85,74,107));
         if(B2.getText().equals("")){
             if(playerOn){
                 B2.setText("X");
@@ -799,6 +851,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_NovoJogoActionPerformed
 
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
+        B4.setForeground(new Color(85,74,107));
         if(B4.getText().equals("")){
             if(playerOn){
                 B4.setText("X");
@@ -816,6 +869,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_B4ActionPerformed
 
     private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
+        B7.setForeground(new Color(85,74,107));
         if(B7.getText().equals("")){
             if(playerOn){
                 B7.setText("X");
@@ -832,6 +886,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_B7ActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
+        B1.setForeground(new Color(85,74,107));        
         if(B1.getText().equals("")){
             if(playerOn){
                 B1.setText("X");
@@ -848,6 +903,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_B1ActionPerformed
 
     private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
+        B9.setForeground(new Color(85,74,107));        
         if(B9.getText().equals("")){
             if(playerOn){
                 B9.setText("X");
@@ -864,6 +920,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_B9ActionPerformed
 
     private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
+        B3.setForeground(new Color(85,74,107));        
         if(B3.getText().equals("")){
             if(playerOn){
                 B3.setText("X");
@@ -880,6 +937,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_B3ActionPerformed
 
     private void B5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ActionPerformed
+        B5.setForeground(new Color(85,74,107));        
         if(B5.getText().equals("")){
             if(playerOn){
                 B5.setText("X");
@@ -896,6 +954,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_B5ActionPerformed
 
     private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
+        B6.setForeground(new Color(85,74,107));
         if(B6.getText().equals("")){
             if(playerOn){
                 B6.setText("X");
@@ -912,6 +971,7 @@ public class TicTacToe extends javax.swing.JFrame {
     }//GEN-LAST:event_B6ActionPerformed
 
     private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
+        B8.setForeground(new Color(85,74,107));        
         if(B8.getText().equals("")){
             if(playerOn){
                 B8.setText("X");
@@ -926,10 +986,6 @@ public class TicTacToe extends javax.swing.JFrame {
                 strategyPc();
             }            }
     }//GEN-LAST:event_B8ActionPerformed
-
-    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_ExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -957,7 +1013,14 @@ public class TicTacToe extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
-                new TicTacToe().setVisible(true);
+                TicTacToe game = new TicTacToe();
+                URL url = getClass().getResource("image/icons8-xbox-x-48.png");
+                ImageIcon imgicon = new ImageIcon(url);
+                game.setIconImage(imgicon.getImage());
+                
+                
+                game.setVisible(true);                
+                //new TicTacToe().setVisible(true);   
             }
         });
     }
@@ -972,7 +1035,6 @@ public class TicTacToe extends javax.swing.JFrame {
     private javax.swing.JButton B7;
     private javax.swing.JButton B8;
     private javax.swing.JButton B9;
-    private javax.swing.JToggleButton Exit;
     private javax.swing.JLabel NEmpate;
     private javax.swing.JLabel NVitoriasComp;
     private javax.swing.JLabel NVitoriasPlayer;
@@ -980,6 +1042,9 @@ public class TicTacToe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
